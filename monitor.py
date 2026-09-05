@@ -148,6 +148,12 @@ def fetch_ggzy():
     sess = requests.Session()
     sess.headers.update(GGZY_HEAD)
 
+    try:
+        ip = sess.get("https://api.ipify.org", timeout=15).text.strip()
+        log(f"  当前出口 IP: {ip}")
+    except Exception:
+        pass
+
     for ep, (itype, tfield, dfield) in GGZY_ENDPOINTS.items():
         for kw in KEYWORDS:
             try:
@@ -198,7 +204,14 @@ def fetch_ggzy():
                     })
                 time.sleep(random.uniform(0.3, 0.8))
             except Exception as e:
-                log(f"  ggzy {ep} kw={kw} 失败: {type(e).__name__}")
+                snippet = ""
+                code = "?"
+                try:
+                    code = r.status_code
+                    snippet = re.sub(r"\s+", " ", (r.text or ""))[:220]
+                except Exception:
+                    pass
+                log(f"  ggzy {ep} kw={kw} 失败: {type(e).__name__} HTTP={code} 响应: {snippet}")
                 continue
     log(f"  ggzy 抓到 {len(results)} 条")
     return results
