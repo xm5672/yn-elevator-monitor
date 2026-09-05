@@ -46,6 +46,24 @@ MAX_PAGES = int(os.environ.get("MAX_PAGES", "3"))
 # 是否推送"无更新"心跳
 SEND_HEARTBEAT = os.environ.get("SEND_HEARTBEAT", "1") == "1"
 
+# 要抓哪些数据源：all / ggzy / ccgp / ggzy,ccgp
+# 拆分用途：本机跑 ggzy（境内 IP 才行），GitHub Actions 跑 ccgp（境外可访问），
+# 两边各用各的去重文件，互不重复推送。
+SOURCES = os.environ.get("SOURCES", "all").strip().lower()
+
+_SRC_NAME = {"ggzy": "云南省公共资源交易网", "ccgp": "中国政府采购网"}
+
+
+def src_label():
+    if SOURCES in ("all", "", "ggzy,ccgp", "ccgp,ggzy"):
+        return "云南省公共资源交易网、中国政府采购网"
+    return "、".join(_SRC_NAME.get(s.strip(), s.strip())
+                     for s in SOURCES.split(",") if s.strip())
+
+
+def want(src):
+    return SOURCES in ("all", "") or src in [s.strip() for s in SOURCES.split(",")]
+
 # 关键词（服务端搜索用，取并集后本地再二次校验）
 # 说明：搜"电梯"已可覆盖 电梯/自动扶梯/电梯维修/电梯保养/电梯改造/电梯更新/电梯维保
 KEYWORDS = ["电梯", "扶梯", "升降机", "液压平台"]
@@ -394,14 +412,21 @@ def main():
     all_items = []
 
     # 1. 抓取
-    try:
-        all_items += fetch_ggzy()
-    except Exception as e:
-        log(f"ggzy 源异常: {e}")
-    try:
-        all_items += fetch_ccgp()
-    except Exception as e:
-        log(f"ccgp 源异常: {e}")
+    if want("ggzy"):
+        try:
+            all_items += fetch_ggzy()
+        except Exception as e:
+            log(f"ggzy 源异常: {e}")
+    else:
+        log("本次跳过 ggzy 源（SOURCES 配置）")
+
+    if want("ccgp"):
+        try:
+            all_items += fetch_ccgp()
+        except Exception as e:
+            log(f"ccgp 源异常: {e}")
+    else:
+        log("本次跳过 ccgp 源（SOURCES 配置）")
 
     # 2. 全局去重（按 id）
     uniq = {}
@@ -428,7 +453,7 @@ def main():
         sample = sorted(all_items, key=lambda x: x.get("date", ""), reverse=True)[:8]
         push(f"✅ 云南电梯招标监控已启动｜{today}",
              f"首次运行完成。\n已纳入 {len(all_items)} 条现有信息作为基线，此后仅推送新增。\n\n"
-             f"监控源：云南省公共资源交易网、中国政府采购网\n"
+             f"监控源：{src_label()}\n"
              f"关键词：{'、'.join(MATCH_WORDS)}\n"
              f"地域：云南省 16 州市\n\n"
              f"【最近 8 条参考】\n{build_content(sample)}")
@@ -451,7 +476,7 @@ def main():
         if SEND_HEARTBEAT:
             push(f"☑️ 云南电梯招标 {today}｜今日无更新",
                  f"巡检完成，近 {DAYS_BACK} 天内未发现新的电梯相关招标/中标信息。\n"
-                 f"监控范围：云南公共资源交易网、中国政府采购网\n"
+                 f"监控范围：{src_label()}\n"
                  f"关键词：{'、'.join(MATCH_WORDS)}")
 
     # 5. 本地留存（便于排查）
