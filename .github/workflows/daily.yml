@@ -1,0 +1,56 @@
+name: 云南电梯招标监控
+
+on:
+  schedule:
+    # UTC 时间；北京时间 = UTC + 8
+    # 下面表示每天北京时间 08:00 运行
+    - cron: '0 0 * * *'
+    # 如需每天跑两次，可再加一条（示例：北京时间 18:00）
+    # - cron: '0 10 * * *'
+  workflow_dispatch:   # 允许在 GitHub 页面手动点按钮运行
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    # 防止同一任务并发导致 git 冲突
+    concurrency:
+      group: yn-elevator-monitor
+      cancel-in-progress: false
+    permissions:
+      contents: write
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 配置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 运行监控脚本
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          DAYS_BACK: '7'
+          SEEN_FILE: 'seen.json'
+          SEND_HEARTBEAT: '1'
+        run: python monitor.py
+
+      - name: 保存去重记录
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen.json latest_result.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "去重记录无变化，跳过提交"
+          else
+            git commit -m "chore: 更新去重记录 $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --rebase origin ${{ github.ref_name }} || true
+            git push
+          fi
