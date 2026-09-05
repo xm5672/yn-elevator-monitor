@@ -40,6 +40,7 @@ jobs:
           DAYS_BACK: '7'
           SEEN_FILE: 'seen.json'
           SEND_HEARTBEAT: '1'
+          SOURCES: 'ccgp'
         run: python monitor.py
 
       - name: 保存去重记录
