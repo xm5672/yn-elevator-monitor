@@ -1,17 +1,21 @@
 # 云南电梯招标监控
 
 自动监控云南电梯相关招标 / 中标 / 变更信息，每天定时推送到微信。
-部署在 GitHub Actions，电脑关机也能跑，不消耗任何费用。
+
+> **重要提示**：云南公共资源交易网（ggzy.yn.gov.cn）只对中国大陆 IP 开放，
+> GitHub 等境外服务器抓不到。本系统采用「**本机 + 云端分源部署**」方案：
+> 本机抓主力源 ggzy（境内 IP），云端抓 ccgp 作为保底。两边各跑各的、不会重复推送。
 
 ---
 
 ## 一、监控范围
 
-### 数据源
-| 数据源 | 覆盖范围 |
-|---|---|
-| 云南省公共资源交易网（ggzy.yn.gov.cn） | 工程类 + 政府采购类（云南本地最全） |
-| 中国政府采购网（ccgp.gov.cn） | 全国政采，按"云南省"过滤 |
+### 数据源（分源抓取）
+
+| 数据源 | 由谁抓 | 覆盖 |
+|---|---|---|
+| 云南省公共资源交易网（ggzy.yn.gov.cn） | **本机**（境内 IP） | 工程类 + 政府采购类，云南本地最全 |
+| 中国政府采购网（ccgp.gov.cn） | **云端 GitHub Actions** | 全国政采，按"云南省"过滤 |
 
 ### 信息类型
 - 招标公告
@@ -30,103 +34,96 @@
 
 ---
 
-## 二、部署步骤（只需做一次）
+## 二、当前部署情况
 
-### 第 1 步：把代码上传到 GitHub
+### 本机（Windows 计划任务）
+- 任务名：`YN-Elevator-Monitor`
+- 触发时间：**每天 08:00 和 20:00**
+- 执行脚本：`run_local.bat`
+- 抓取源：`ggzy`（仅云南本地源）
+- 去重文件：`seen_local.json`（与云端隔离，互不重复推送）
 
-进入你的仓库 `https://github.com/xm5672/yn-elevator-monitor`，
-点 **Add file → Upload files**，把下面 4 个文件拖进去：
+### 云端（GitHub Actions）
+- 仓库：`https://github.com/xm5672/yn-elevator-monitor`
+- 触发时间：**每天北京时间 08:00**（UTC 0 点）
+- 工作流：`.github/workflows/daily.yml`
+- 抓取源：`ccgp`（仅全国政采）
+- 去重文件：`seen.json`（云端自动 commit 回仓库）
 
-```
-monitor.py
-requirements.txt
-.github/workflows/daily.yml      ← 注意：要连目录一起创建
-seen.json（本地跑过才有，有就传，没有可跳过）
-```
-
-> **如何创建 `.github/workflows/` 目录？**
-> GitHub 网页上传时无法直接建空目录。可以点 **Add file → Create new file**，
-> 在文件名框里直接输入 `.github/workflows/daily.yml`（带斜杠），
-> GitHub 会自动帮你建好目录，然后把 daily.yml 的内容粘贴进去即可。
-
-### 第 2 步：配置推送密钥（重要）
-
-1. 进入仓库 → **Settings** → **Secrets and variables** → **Actions**
-2. 点 **New repository secret**
-3. Name 填：`PUSHPLUS_TOKEN`
-4. Value 填你的 PushPlus Token
-5. 点 **Add secret**
-
-> 密钥会加密存储，代码里看不到，也不会出现在运行日志里。
-
-### 第 3 步：启用 Actions
-
-1. 进入仓库 → **Actions** 标签页
-2. 如果看到提示 "I understand my workflows, go ahead and enable them"，点它启用
-3. 左侧找到 **云南电梯招标监控**，点进去
-4. 右上角点 **Run workflow** → **Run workflow**，手动跑一次测试
-
-几秒到一分钟后，你微信就能收到消息了。
+### 推送
+- 渠道：PushPlus 微信公众号推送
+- 有新增：推送条目清单
+- 无新增：推送"今日无更新"心跳（证明系统在跑）
 
 ---
 
-## 三、运行时间
+## 三、文件说明
 
-默认：**每天北京时间 08:00**
-
-想改时间，编辑 `.github/workflows/daily.yml` 里的 cron：
-
-```yaml
-schedule:
-  - cron: '0 0 * * *'    # UTC 时间，北京时间 = UTC + 8
-```
-
-换算方法：**北京时间 - 8 = UTC 时间**
-
-| 想要的时间（北京） | cron |
+| 文件 | 作用 |
 |---|---|
-| 早上 8:00 | `0 0 * * *` |
-| 早上 9:00 | `0 1 * * *` |
-| 中午 12:00 | `0 4 * * *` |
-| 晚上 20:00 | `0 12 * * *` |
-| 早 8 点 + 晚 8 点各一次 | 两条：`0 0 * * *` 和 `0 12 * * *` |
+| `monitor.py` | 主抓取脚本，支持 `SOURCES` 和 `SEEN_FILE` 环境变量分源分库 |
+| `.github/workflows/daily.yml` | 云端 GitHub Actions 配置（每天 08:00 UTC 0 点跑） |
+| `run_local.bat` | 本机包装脚本（设好 token + SOURCES=ggzy + SEEN_FILE=seen_local.json） |
+| `requirements.txt` | Python 依赖 |
+| `seen.json` | 云端去重基线（自动提交） |
+| `seen_local.json` | 本机去重基线（仅本机） |
+| `deploy.py` / `upload.py` | 一键部署到 GitHub 的脚本（已跑过） |
+| `logs/run.log` | 本机每次运行的日志 |
 
 ---
 
-## 四、常见调整
+## 四、本地调试
+
+```bash
+# 仅抓 ggzy（适合本机）
+set PUSHPLUS_TOKEN=你的token
+set SOURCES=ggzy
+set SEEN_FILE=seen_local.json
+python monitor.py
+
+# 仅抓 ccgp（适合云端）
+set SOURCES=ccgp
+set SEEN_FILE=seen.json
+python monitor.py
+
+# 全抓（首次调试）
+set SOURCES=all
+python monitor.py
+```
+
+> 首次运行会把现有信息建立为基线，只发一条"监控已启动"通知，不会轰炸。
+> 之后每次运行只推送新增。
+
+---
+
+## 五、调整监控参数
 
 编辑 `monitor.py` 顶部的配置区：
 
 ```python
-DAYS_BACK = 7          # 只推近 N 天的信息，避免推历史旧闻
-KEYWORDS = [...]       # 服务端搜索关键词
-MATCH_WORDS = [...]    # 本地二次校验词表
+DAYS_BACK = 7              # 只推近 N 天的信息
+KEYWORDS = [...]           # 服务端搜索关键词
+MATCH_WORDS = [...]        # 本地二次校验词表
+SOURCES = "all"            # 默认全抓，本机和云端会覆盖
 ```
 
-> 改完后 commit，下次运行自动生效。
+改完后重新部署：
+
+- **云端**：把改后的 monitor.py 提交到 GitHub，云端次日自动生效
+- **本机**：直接保存即可，下次定时运行自动生效
 
 ---
 
-## 五、本地测试
+## 六、未接入的源（后续可扩展）
 
-```bash
-pip install -r requirements.txt
-
-export PUSHPLUS_TOKEN="你的token"     # Windows 用 set
-python monitor.py
-```
-
-首次运行会把现有信息建立为基线，只发一条"监控已启动"通知，不会轰炸。
-之后每次运行只推送新增。
-
----
-
-## 六、说明
-
-- **去重**：`seen.json` 记录已推送条目，同一条不会重复推。
-- **心跳**：无新信息时也会推送"今日无更新"，方便确认脚本还活着。
-- **容错**：单个数据源失败不影响其他源。
-
-### 当前未接入的源
-- 中国招标投标公共服务平台（ctbpsp.com）：纯前端渲染，需浏览器抓包，后续可扩展
+- 中国招标投标公共服务平台（ctbpsp.com / cebpubservice.com）：纯前端渲染，需浏览器抓包
 - 政采云（zcygov.cn）：与已接入的两源重复度较高，暂未接入
+- 州市政府门户、企业自建采购平台：覆盖云南地方小项目和国企非必招项目
+
+---
+
+## 七、注意事项
+
+- **电脑关机影响**：关机时 ggzy 不抓，ccgp（云端）仍正常推送
+- **去重机制**：本机 `seen_local.json` 与云端 `seen.json` 互不影响
+- **监控失效**：如果你超过 1 周没收到任何消息（连心跳都没有），说明本机计划任务停了
