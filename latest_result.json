@@ -1,5 +1,32 @@
 [
   {
+    "id": "071aab135af8b5c3",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "禄丰市委市政府办公楼电梯采购项目公开招标公告",
+    "date": "2026.10.22",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202610/t20261022_27539974.htm"
+  },
+  {
+    "id": "0bbc241e9d3a040c",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "元谋县中医医院（老院区）门诊楼医用电梯采购安装项目（四次）询价公告",
+    "date": "2026.10.22",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202610/t20261022_27539206.htm"
+  },
+  {
+    "id": "8f71f604f4aa7c9c",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "勐腊镇城子社区日间照料中心电梯采购项目成交公告",
+    "date": "2026.10.22",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261022_27538840.htm"
+  },
+  {
     "id": "cfc0d516dd8c3b45",
     "source": "中国政府采购网",
     "type": "政采公告",
@@ -106,59 +133,5 @@
     "date": "2026.10.15",
     "area": "云南",
     "link": "http://www.ccgp.gov.cn/cggg/dfgg/fblbgg/202610/t20261015_27499980.htm"
-  },
-  {
-    "id": "04fd41be171e09b1",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "石屏县政府采购和出让中心关于石屏县人民检察院技侦大楼电梯采购安装项目的更正公告",
-    "date": "2026.10.14",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gzgg/202610/t20261014_27493155.htm"
-  },
-  {
-    "id": "f2e7e735f6a76c39",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "石屏县政府采购和出让中心关于石屏县人民检察院技侦大楼电梯采购安装项目的公开招标公告",
-    "date": "2026.10.14",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202610/t20261014_27490548.htm"
-  },
-  {
-    "id": "d9f1971c654e6e8f",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "宁洱县中医医院药品库房电梯更新采购项目（二次）询价公告",
-    "date": "2026.10.14",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202610/t20261014_27489966.htm"
-  },
-  {
-    "id": "9bb2ea581d03b26f",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "云南财经大学南院成蹊楼改造提升建设项目电梯购置与安装2650中标公告",
-    "date": "2026.10.14",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/zbgg/202610/t20261014_27488202.htm"
-  },
-  {
-    "id": "421c39eba585e25e",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "大理州政府采购和出让中心关于JC-2026048Z大理州老干部活动中心1号楼更新电梯公开招标采购项目的公开招标公告",
-    "date": "2026.10.14",
-    "area": "大理",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202610/t20261014_27487689.htm"
-  },
-  {
-    "id": "65b34941561c49ab",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "元谋县中医医院（老院区）门诊楼医用电梯采购安装项目（三次）废标公告",
-    "date": "2026.10.14",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/fblbgg/202610/t20261014_27485182.htm"
   }
 ]
