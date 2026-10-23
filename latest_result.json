@@ -1,5 +1,14 @@
 [
   {
+    "id": "de10afa47873195d",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "文山市2026年城区住宅老旧电梯更新改造项目（一期）中标公告",
+    "date": "2026.10.22",
+    "area": "文山",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/zbgg/202610/t20261022_27543413.htm"
+  },
+  {
     "id": "071aab135af8b5c3",
     "source": "中国政府采购网",
     "type": "政采公告",
@@ -124,14 +133,5 @@
     "date": "2026.10.16",
     "area": "云南",
     "link": "http://www.ccgp.gov.cn/cggg/dfgg/jzxcs/202610/t20261016_27507502.htm"
-  },
-  {
-    "id": "da486c1b85700bef",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "马关县民族职业高级中学新能源汽车实训室电梯采购项目（二次）终止公告",
-    "date": "2026.10.15",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/fblbgg/202610/t20261015_27499980.htm"
   }
 ]
