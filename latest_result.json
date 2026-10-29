@@ -1,5 +1,23 @@
 [
   {
+    "id": "c4e2cf7469fab263",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "YXGK2026040玉溪市第二人民医院4号楼（心身康复大楼）电梯（旧电梯更换）采购项目公开招标公告",
+    "date": "2026.10.28",
+    "area": "玉溪",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202610/t20261028_27577456.htm"
+  },
+  {
+    "id": "d2962938889540e1",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "耿马傣族佤族自治县人民医院电梯采购及安装项目成交公告",
+    "date": "2026.10.28",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261028_27576264.htm"
+  },
+  {
     "id": "f5d8cda23e95b003",
     "source": "中国政府采购网",
     "type": "政采公告",
@@ -124,23 +142,5 @@
     "date": "2026.10.22",
     "area": "云南",
     "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261022_27538840.htm"
-  },
-  {
-    "id": "cfc0d516dd8c3b45",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "永善县政府采购和出让中心关于永善县黄华镇中心卫生院电梯采购项目(二次）的询价公告",
-    "date": "2026.10.21",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202610/t20261021_27530327.htm"
-  },
-  {
-    "id": "6f1730c267ae03c1",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "文山市皮肤病防治站医用电梯安装及改造采购项目(四次)竞争性谈判公告",
-    "date": "2026.10.21",
-    "area": "文山",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/jzxtpgg/202610/t20261021_27530205.htm"
   }
 ]
