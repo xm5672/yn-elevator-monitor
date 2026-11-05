@@ -1,5 +1,32 @@
 [
   {
+    "id": "022acda5de6aae41",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "西双版纳州傣医医院电梯采购项目（二次）的公开招标公告",
+    "date": "2026.11.04",
+    "area": "西双版纳",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202611/t20261104_27620388.htm"
+  },
+  {
+    "id": "5f6fe03fc2a7f5e2",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "砚山县政府采购和出让中心关于砚山县皮肤病防治站电梯安装项目的询价公告",
+    "date": "2026.11.04",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202611/t20261104_27620320.htm"
+  },
+  {
+    "id": "368baaf1d10f70f8",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "禄脿中心敬老院电梯项目的询价公告",
+    "date": "2026.11.04",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202611/t20261104_27619667.htm"
+  },
+  {
     "id": "d85d2146e478838f",
     "source": "中国政府采购网",
     "type": "政采公告",
@@ -70,23 +97,5 @@
     "date": "2026.10.29",
     "area": "云南",
     "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261029_27583224.htm"
-  },
-  {
-    "id": "c4e2cf7469fab263",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "YXGK2026040玉溪市第二人民医院4号楼（心身康复大楼）电梯（旧电梯更换）采购项目公开招标公告",
-    "date": "2026.10.28",
-    "area": "玉溪",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202610/t20261028_27577456.htm"
-  },
-  {
-    "id": "d2962938889540e1",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "耿马傣族佤族自治县人民医院电梯采购及安装项目成交公告",
-    "date": "2026.10.28",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261028_27576264.htm"
   }
 ]
