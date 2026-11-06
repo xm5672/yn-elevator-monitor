@@ -1,5 +1,50 @@
 [
   {
+    "id": "28f6c7a42b0bdc1d",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "JC-2026048Z大理州老干部活动中心1号楼更新电梯公开招标采购项目终止公告",
+    "date": "2026.11.06",
+    "area": "大理",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/fblbgg/202611/t20261106_27632823.htm"
+  },
+  {
+    "id": "445ec142b2f1e7d3",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "弥勒市特殊教育学校无障碍电梯成交公告",
+    "date": "2026.11.06",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202611/t20261106_27632171.htm"
+  },
+  {
+    "id": "5a7f80a2c76d9c2b",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "宜良县匡远街道办事处中心卫生院老年病专科电梯采购及安装项目的公开招标公告",
+    "date": "2026.11.05",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202611/t20261105_27629209.htm"
+  },
+  {
+    "id": "56c5930626ed2f95",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "学府校区老行政楼（知行苑）电梯设备采购项目的询价公告",
+    "date": "2026.11.05",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/xjgg/202611/t20261105_27628889.htm"
+  },
+  {
+    "id": "b20a8dd63d8a6f19",
+    "source": "中国政府采购网",
+    "type": "政采公告",
+    "title": "石屏县人民检察院技侦大楼电梯采购安装项目终止公告",
+    "date": "2026.11.05",
+    "area": "云南",
+    "link": "http://www.ccgp.gov.cn/cggg/dfgg/fblbgg/202611/t20261105_27625467.htm"
+  },
+  {
     "id": "022acda5de6aae41",
     "source": "中国政府采购网",
     "type": "政采公告",
@@ -79,23 +124,5 @@
     "date": "2026.10.30",
     "area": "云南",
     "link": "http://www.ccgp.gov.cn/cggg/dfgg/jzxcs/202610/t20261030_27588994.htm"
-  },
-  {
-    "id": "a15bb740607bee05",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "弥勒市特殊教育学校无障碍电梯更正公告",
-    "date": "2026.10.29",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/gzgg/202610/t20261029_27586270.htm"
-  },
-  {
-    "id": "cec28543a3f50f99",
-    "source": "中国政府采购网",
-    "type": "政采公告",
-    "title": "元谋县中医医院（老院区）门诊楼医用电梯采购安装项目（四次）成交结果公告",
-    "date": "2026.10.29",
-    "area": "云南",
-    "link": "http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202610/t20261029_27583224.htm"
   }
 ]
